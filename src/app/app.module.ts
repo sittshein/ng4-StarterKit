@@ -1,12 +1,14 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+import { HttpModule } from '@angular/http';
 
 import { AppRoutingModule, routedComponents } from './app-routing.module';
 import { AppComponent } from './app.component';
-// Feature Modules
+// Core Modules
 import { CoreModule } from './core/core.module';
-import { CharactersModule } from 'app/characters/characters.module';
+// Data Service
+import { CharacterService } from 'app/models';
+
 
 @NgModule({
   declarations: [
@@ -15,11 +17,11 @@ import { CharactersModule } from 'app/characters/characters.module';
   ],
   imports: [
     BrowserModule,
+    HttpModule,
     CoreModule,
-    CharactersModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [CharacterService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

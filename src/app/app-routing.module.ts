@@ -14,6 +14,7 @@ import { PageNotFoundComponent } from 'app/page-not-found.component';
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'dashboard' },
   { path: 'dashboard', loadChildren: 'app/dashboard/dashboard.module#DashboardModule' },
+  { path: 'characters', loadChildren: 'app/characters/characters.module#CharactersModule' },
   { path: '**', pathMatch: 'full', component: PageNotFoundComponent },
 ];
 

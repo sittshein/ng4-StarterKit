@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
 import { CharactersRoutingModule, routedComponents } from './characters-routing.module';
+import { CharacterFilterPipe } from './shared/character-filter.pipe';
+import { SortCharactersPipe } from './shared/sort-characters.pipe';
 
 @NgModule({
   imports: [
@@ -10,6 +12,6 @@ import { CharactersRoutingModule, routedComponents } from './characters-routing.
     FormsModule,
     CharactersRoutingModule
   ],
-  declarations: [routedComponents]
+  declarations: [routedComponents, CharacterFilterPipe, SortCharactersPipe]
 })
 export class CharactersModule { }

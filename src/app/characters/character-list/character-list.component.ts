@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 import { ICharacter, CharacterService } from '../models';
 
@@ -11,11 +11,18 @@ import { ICharacter, CharacterService } from '../models';
 export class CharacterListComponent implements OnInit {
   title = 'Characters';
   characters: ICharacter[];
+  listFilter: string;
   errorMessage: string;
 
-  constructor(private _characterService: CharacterService, private _router: Router) { }
+  constructor(private _characterService: CharacterService,
+              private _router: Router,
+              private _route: ActivatedRoute
+              ) { }
 
-  ngOnInit() { this.getCharacters(); }
+  ngOnInit() {
+    this.listFilter = this._route.snapshot.queryParams['filterBy'] || '';
+    this.getCharacters();
+  }
 
   getCharacters(): void {
     this._characterService.getCharacters()

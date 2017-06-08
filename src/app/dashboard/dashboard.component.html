@@ -1,8 +1,10 @@
 <article>
   <h4>{{title}}</h4>
   <div>
-    <p>
-      dashboard works!
-    </p>
+    <div>
+      <div *ngFor="let character of characters">
+        <my-dashboard-button [character]="character"></my-dashboard-button>
+      </div>
+    </div>
   </div>
 </article>

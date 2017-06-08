@@ -1,16 +1,21 @@
 import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
 
-import { DashboardComponent } from 'app/dashboard/dashboard.component';
+import { DashboardComponent } from './dashboard.component';
+import { DashboardButtonComponent } from './shared/dashboard-button/dashboard-button.component';
 
 const routes: Routes = [
   { path: '', component: DashboardComponent },
 ]
 
 @NgModule({
-  imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule],
-
+  imports: [
+    CommonModule,
+    RouterModule.forChild(routes)
+  ],
+  exports: [CommonModule, RouterModule],
 })
 export class DashboardRoutingModule { }
-export const routedComponents = [DashboardComponent];
+
+export const routedComponents = [DashboardComponent, DashboardButtonComponent];

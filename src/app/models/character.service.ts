@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
-import { Http, Response } from '@angular/http';
+import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
-
+import 'rxjs/add/observable/of';
+import 'rxjs/add/observable/throw';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/catch';
@@ -9,23 +10,89 @@ import 'rxjs/add/operator/finally';
 
 import { Character } from './character.model';
 
+
 @Injectable()
 export class CharacterService {
-  private charactersUrl = 'api/characters.json';
+  private baseUrl = 'api/characters.json';
+  private headers = new Headers({ 'Content-Type': 'application/json' });
 
   constructor(private _http: Http) { }
 
   getCharacters(): Observable<Character[]> {
     return this._http
-      .get(this.charactersUrl)
-      .map((res: Response) => res.json().data as Character[])
-      .do(data => console.log(JSON.stringify(data)))
+      .get(this.baseUrl)
+      .map(this.extractData)
+      .do(data => console.log('getCharacters: ' + JSON.stringify(data)))
       .catch(this.handleError);
   }
 
-  private handleError(error: Response) {
-    console.error(error);
-    const msg = `Error status code ${error.status} at ${error.url}`;
-    return Observable.throw(msg);
+  getCharacter(id: number): Observable<Character> {
+    if (id === 0) {
+      return Observable.of(this.initializeCharacter());
+    };
+    const url = `${this.baseUrl}/${id}`;
+    return this._http
+      .get(url)
+      .map(this.extractData)
+      .do(data => console.log('getCharacter: ' + JSON.stringify(data)))
+      .catch(this.handleError);
   }
+
+  deleteCharacter(id: number): Observable<Character> {
+    const options = new RequestOptions({ headers: this.headers });
+    const url = `${this.baseUrl}/${id}`;
+    return this._http
+      .delete(url, options)
+      .do(data => console.log('deleteProduct: ' + JSON.stringify(data)))
+      .catch(this.handleError);
+  }
+
+  saveCharacter(character: Character): Observable<Character> {
+    const options = new RequestOptions({ headers: this.headers });
+    if (character.id === 0) {
+      return this.createCharacter(character, options);
+    }
+    return this.updateCharacter(character, options);
+  }
+
+  private createCharacter(character: Character, options: RequestOptions): Observable<Character> {
+    character.id = undefined;
+    return this._http
+      .post(this.baseUrl, character, options)
+      .map(this.extractData)
+      .do(data => console.log('createCharacter: ' + JSON.stringify(data)))
+      .catch(this.handleError);
+  }
+
+  private updateCharacter(character: Character, options: RequestOptions): Observable<Character> {
+    const url = `${this.baseUrl}/${character.id}`;
+    return this._http
+      .put(url, character, options)
+      // .map(this.extractData)
+      .map(() => character)
+      .do(data => console.log('updateCharacter: ' + JSON.stringify(data)))
+      .catch(this.handleError);
+  }
+
+  private extractData(response: Response) {
+    const body = response.json();
+    return body.data || {};
+  }
+  private handleError(error: Response): Observable<any> {
+    //  we may send the server to some remote logging infrastructure
+    // instead of just logging it to the console
+    console.error(error);
+    const message = `Error status code ${error.status} at ${error.url}`;
+    return Observable.throw(message);
+  }
+
+  private initializeCharacter(): Character {
+    // Return an initialized object
+    return {
+      id: 0,
+      name: null,
+      side: null
+    };
+  }
+
 }

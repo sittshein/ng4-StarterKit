@@ -1,11 +1,11 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { ICharacter } from '../models';
+import { ICharacter } from '../characters/models';
 
 
 @Pipe({
-  name: 'characterFilter'
+  name: 'filter'
 })
-export class CharacterFilterPipe implements PipeTransform {
+export class FilterPipe implements PipeTransform {
 
   transform(value: ICharacter[], filterBy: string): ICharacter[] {
     filterBy = filterBy ? filterBy.toLocaleLowerCase() : null;

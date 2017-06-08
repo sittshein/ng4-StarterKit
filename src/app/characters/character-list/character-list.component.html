@@ -8,7 +8,7 @@
     <h4>Filtered by: {{listFilter}} </h4>
   </div>
   <ul>
-    <li *ngFor="let character of characters | characterFilter:listFilter | sortCharacters">
+    <li *ngFor="let character of characters | sort | filter:listFilter">
       {{character.name}} &nbsp;
       <!--<a href="" [routerLink]="[character.id]">Edit</a>-->
       <button (click)="gotoDetail(character.id)">Edit</button>

@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { PreloadAllModules, Routes, RouterModule } from '@angular/router';
+import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
 import { PageNotFoundComponent } from 'app/page-not-found.component';
 
 /***************************************************************
@@ -17,6 +17,7 @@ const routes: Routes = [
   { path: 'characters', loadChildren: 'app/characters/characters.module#CharactersModule' },
   { path: '**', pathMatch: 'full', component: PageNotFoundComponent },
 ];
+
 
 @NgModule({
   imports: [RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules })],

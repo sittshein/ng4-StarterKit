@@ -1,17 +1,12 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { SharedModule } from '../shared/shared.module';
 
 import { CharactersRoutingModule, routedComponents } from './characters-routing.module';
-import { CharacterFilterPipe } from './shared/character-filter.pipe';
-import { SortCharactersPipe } from './shared/sort-characters.pipe';
+import { FilterPipe } from '../shared/filter.pipe';
+import { SortPipe } from '../shared/sort.pipe';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    FormsModule,
-    CharactersRoutingModule
-  ],
-  declarations: [routedComponents, CharacterFilterPipe, SortCharactersPipe]
+  imports: [SharedModule, CharactersRoutingModule],
+  declarations: [routedComponents, FilterPipe, SortPipe]
 })
 export class CharactersModule { }

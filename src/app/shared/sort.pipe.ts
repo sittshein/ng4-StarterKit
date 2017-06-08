@@ -1,10 +1,10 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { ICharacter } from '../models';
+import { ICharacter } from '../characters/models';
 
 @Pipe({
-  name: 'sortCharacters'
+  name: 'sort'
 })
-export class SortCharactersPipe implements PipeTransform {
+export class SortPipe implements PipeTransform {
   transform(value: ICharacter[], args?: any[]) {
     if (!value || !value.sort) { return value; }
 

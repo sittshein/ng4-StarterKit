@@ -1,7 +1,11 @@
 <article>
   <h4>{{title}}</h4>
-  <a href=""><button>Add</button></a>
+  <a href="" [routerLink]="['/characters', 'new']"><button>Add</button></a>
   <ul>
-    <li *ngFor="let character of characters">{{character.name}}</li>
+    <li *ngFor="let character of characters">
+      {{character.name}} &nbsp;
+      <!--<a href="" [routerLink]="[character.id]">Edit</a>-->
+      <button (click)="gotoDetail(character.id)">Edit</button>
+    </li>
   </ul>
 </article>

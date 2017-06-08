@@ -7,7 +7,7 @@ import { AppComponent } from './app.component';
 // Core Modules
 import { CoreModule } from './core/core.module';
 // Data Service
-import { CharacterService } from 'app/models';
+import { CharacterService } from 'app/characters/models';
 
 
 @NgModule({

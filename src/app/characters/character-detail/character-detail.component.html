@@ -1,0 +1,22 @@
+<article>
+  <div *ngIf="character">
+    <h4>{{character.name | uppercase}} details</h4>
+
+    <div>
+      <label for="nametext">Name</label>
+      <input type="text" id="nametext" [(ngModel)]="character.name" />
+    </div>
+
+    <div>
+      <label for="sidetext">Side</label>
+      <input type="text" id="sidetext" [(ngModel)]="character.side" />
+    </div>
+
+    <div>
+      <button (click)="save()">Save</button> &nbsp;
+      <button (click)="cancel()">Cancel</button> &nbsp;
+      <button (click)="delete()">Delete</button>
+    </div>
+
+  </div>
+</article>

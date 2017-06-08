@@ -1,17 +1,19 @@
 import { Component, OnInit } from '@angular/core';
-import { Character, CharacterService } from '../../models';
+import { Router } from '@angular/router';
+
+import { ICharacter, CharacterService } from '../models';
+
 
 @Component({
-  selector: 'my-character-list',
   templateUrl: './character-list.component.html',
   styleUrls: ['./character-list.component.css']
 })
 export class CharacterListComponent implements OnInit {
   title = 'Characters';
-  characters: Character[];
+  characters: ICharacter[];
   errorMessage: string;
 
-  constructor(private _characterService: CharacterService) { }
+  constructor(private _characterService: CharacterService, private _router: Router) { }
 
   ngOnInit() { this.getCharacters(); }
 
@@ -23,4 +25,7 @@ export class CharacterListComponent implements OnInit {
       );
   }
 
+  gotoDetail(id: number): void {
+    this._router.navigate(['/characters', id]);
+  }
 }

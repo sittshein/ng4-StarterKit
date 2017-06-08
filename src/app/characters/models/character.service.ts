@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
+
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
 import 'rxjs/add/observable/throw';
@@ -8,7 +9,7 @@ import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/finally';
 
-import { Character } from './character.model';
+import { ICharacter } from './character';
 
 
 @Injectable()
@@ -18,7 +19,7 @@ export class CharacterService {
 
   constructor(private _http: Http) { }
 
-  getCharacters(): Observable<Character[]> {
+  getCharacters(): Observable<ICharacter[]> {
     return this._http
       .get(this.baseUrl)
       .map(this.extractData)
@@ -26,7 +27,7 @@ export class CharacterService {
       .catch(this.handleError);
   }
 
-  getCharacter(id: number): Observable<Character> {
+  getCharacter(id: number): Observable<ICharacter> {
     if (id === 0) {
       return Observable.of(this.initializeCharacter());
     };
@@ -38,7 +39,7 @@ export class CharacterService {
       .catch(this.handleError);
   }
 
-  deleteCharacter(id: number): Observable<Character> {
+  deleteCharacter(id: number): Observable<ICharacter> {
     const options = new RequestOptions({ headers: this.headers });
     const url = `${this.baseUrl}/${id}`;
     return this._http
@@ -47,7 +48,7 @@ export class CharacterService {
       .catch(this.handleError);
   }
 
-  saveCharacter(character: Character): Observable<Character> {
+  saveCharacter(character: ICharacter): Observable<ICharacter> {
     const options = new RequestOptions({ headers: this.headers });
     if (character.id === 0) {
       return this.createCharacter(character, options);
@@ -55,7 +56,7 @@ export class CharacterService {
     return this.updateCharacter(character, options);
   }
 
-  private createCharacter(character: Character, options: RequestOptions): Observable<Character> {
+  private createCharacter(character: ICharacter, options: RequestOptions): Observable<ICharacter> {
     character.id = undefined;
     return this._http
       .post(this.baseUrl, character, options)
@@ -64,7 +65,7 @@ export class CharacterService {
       .catch(this.handleError);
   }
 
-  private updateCharacter(character: Character, options: RequestOptions): Observable<Character> {
+  private updateCharacter(character: ICharacter, options: RequestOptions): Observable<ICharacter> {
     const url = `${this.baseUrl}/${character.id}`;
     return this._http
       .put(url, character, options)
@@ -86,7 +87,7 @@ export class CharacterService {
     return Observable.throw(message);
   }
 
-  private initializeCharacter(): Character {
+  private initializeCharacter(): ICharacter {
     // Return an initialized object
     return {
       id: 0,

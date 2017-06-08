@@ -1,14 +1,15 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
-import { CharactersRoutingModule, routedComponents } from 'app/characters/characters-routing.module';
-import { CharacterListComponent } from './character-list/character-list.component';
+import { CharactersRoutingModule, routedComponents } from './characters-routing.module';
 
 @NgModule({
   imports: [
     CommonModule,
+    FormsModule,
     CharactersRoutingModule
   ],
-  declarations: [routedComponents, CharacterListComponent]
+  declarations: [routedComponents]
 })
 export class CharactersModule { }

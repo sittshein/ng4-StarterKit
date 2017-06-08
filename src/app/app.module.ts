@@ -10,6 +10,8 @@ import { AppRoutingModule, routedComponents } from './app-routing.module';
 import { AppComponent } from './app.component';
 // Core Modules
 import { CoreModule } from './core/core.module';
+// CharacterService
+import { CharacterService } from 'app/characters/models';
 
 
 @NgModule({
@@ -24,7 +26,7 @@ import { CoreModule } from './core/core.module';
     AppRoutingModule,
     InMemoryWebApiModule.forRoot(InMemoryStoreService, { delay: 300 })
   ],
-  providers: [],
+  providers: [CharacterService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

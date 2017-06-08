@@ -6,7 +6,7 @@ import { DashboardComponent } from './dashboard.component';
 import { DashboardButtonComponent } from './shared/dashboard-button/dashboard-button.component';
 
 const routes: Routes = [
-  { path: '', component: DashboardComponent },
+  { path: '', component: DashboardComponent, data: { title: 'Top Characters' } },
 ]
 
 @NgModule({

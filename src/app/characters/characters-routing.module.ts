@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { CharacterService } from 'app/characters/models';
 import { CharacterResolverService } from './models/character-resolver.service';
 
 import { CharactersComponent } from './characters.component';
@@ -22,7 +21,7 @@ const routes: Routes = [
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
-  providers: [CharacterService, CharacterResolverService]
+  providers: [CharacterResolverService]
 })
 export class CharactersRoutingModule { }
 

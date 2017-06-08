@@ -12,7 +12,7 @@ class MenuItem {
   styleUrls: ['./nav.component.css'],
 })
 export class NavComponent implements OnInit {
-  title = 'Angular 4 StarterKit';
+  title = 'Angular4 StarterKit';
   menuItems: MenuItem[];
 
   ngOnInit() {

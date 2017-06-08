@@ -2,8 +2,8 @@
   <h4>{{title}}</h4>
   <div>
     <div>
-      <div *ngFor="let character of characters">
-        <my-dashboard-button [character]="character"></my-dashboard-button>
+      <div *ngFor="let character of characters | async;trackBy:trackByCharacters">
+        <my-dashboard-button [character]="character" (click)="gotoDetail(character.id)">></my-dashboard-button>
       </div>
     </div>
   </div>

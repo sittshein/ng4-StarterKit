@@ -14,7 +14,7 @@ import { ICharacter } from './character';
 
 @Injectable()
 export class CharacterService {
-  private baseUrl = 'api/characters.json';
+  private baseUrl = 'api/characters';
   private headers = new Headers({ 'Content-Type': 'application/json' });
 
   constructor(private _http: Http) { }

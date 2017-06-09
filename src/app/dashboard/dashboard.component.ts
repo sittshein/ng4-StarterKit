@@ -1,9 +1,8 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Observable } from 'rxjs/Observable';
-import { Subscription } from 'rxjs/Subscription';
 
 import { ICharacter, CharacterService } from '../characters/models';
+import { Observable } from 'rxjs/Observable';
 
 
 @Component({

@@ -1,15 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
 
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/observable/of';
-import 'rxjs/add/observable/throw';
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/do';
-import 'rxjs/add/operator/catch';
-import 'rxjs/add/operator/finally';
-
 import { ICharacter } from './character';
+import { Observable } from 'rxjs/Observable';
 
 
 @Injectable()
@@ -89,11 +82,12 @@ export class CharacterService {
 
   private initializeCharacter(): ICharacter {
     // Return an initialized object
-    return {
+    const character = {
       id: 0,
       name: null,
       side: null
     };
+    return character;
   }
 
 }

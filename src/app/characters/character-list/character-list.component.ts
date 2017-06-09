@@ -15,9 +15,9 @@ export class CharacterListComponent implements OnInit {
   errorMessage: string;
 
   constructor(private _characterService: CharacterService,
-              private _router: Router,
-              private _route: ActivatedRoute
-              ) { }
+    private _router: Router,
+    private _route: ActivatedRoute
+  ) { }
 
   ngOnInit() {
     this.listFilter = this._route.snapshot.queryParams['filterBy'] || '';

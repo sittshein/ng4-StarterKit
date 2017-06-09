@@ -2,21 +2,25 @@
   <div *ngIf="character">
     <h4>{{character.name | uppercase}} details</h4>
 
-    <div>
-      <label for="nametext">Name</label>
-      <input type="text" id="nametext" [(ngModel)]="character.name" />
-    </div>
+    <form #editForm="ngForm" novalidate (ngSubmit)="save(editForm)">
 
-    <div>
-      <label for="sidetext">Side</label>
-      <input type="text" id="sidetext" [(ngModel)]="character.side" />
-    </div>
+      <div>
+        <label for="nametext">Name</label>
+        <input type="text" name="nametext" [(ngModel)]="character.name" />
+      </div>
 
-    <div>
-      <button (click)="save()">Save</button> &nbsp;
-      <button (click)="cancel()">Cancel</button> &nbsp;
-      <button (click)="delete()">Delete</button>
-    </div>
+      <div>
+        <label for="sidetext">Side</label>
+        <input type="text" name="sidetext" [(ngModel)]="character.side" />
+      </div>
+
+      <div>
+        <button (click)="save()">Save</button> &nbsp;
+        <button (click)="cancel()">Cancel</button> &nbsp;
+        <button (click)="delete()">Delete</button>
+      </div>
+
+    </form>
 
   </div>
 </article>
